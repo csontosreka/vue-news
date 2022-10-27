@@ -1,26 +1,55 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <SearchBar @handle-submit="handleSubmit"/>
+  <Articles v-if="isCurrentNewsLoaded === false" :articles="fetchCurrentNews()"/>
+  <Articles :articles="news"/>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchBar from "@/components/Searchbar.component";
+import Articles from "@/components/Articles.component";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Articles,
+    SearchBar
+  },
+  data() {
+    return {
+      apiKey: "60073e5abb1446cb80c7edd6858bf828",
+      news: [],
+      isCurrentNewsLoaded: false
+    }
+  },
+  methods: {
+    handleSubmit(query) {
+      console.log('fetching query...')
+      const url = `https://newsapi.org/v2/everything?q=${query}&sortBy=popularity&apiKey=${this.apiKey}`
+      const req = new Request(url)
+
+      fetch(req).then((res) => {
+        return res.json()
+      }).then(this.setResults)
+    },
+    setResults(results) {
+      this.news = results.articles
+    },
+    fetchCurrentNews() {
+      const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${this.apiKey}`
+      const req = new Request(url)
+
+      fetch(req).then((res) => {
+        console.log('fetching current...')
+        this.isCurrentNewsLoaded = true
+        return res.json()
+      }).then(this.setResults)
+    }
   }
 }
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
