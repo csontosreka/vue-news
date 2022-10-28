@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     toggleContent() {
-      console.log('toggle')
       this.isVisible = !this.isVisible
     }
   }
