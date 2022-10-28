@@ -1,6 +1,6 @@
 <template>
   <div class="grid place-items-center"
-       :articles="articles" v-for="(article, index) in articles" :key="index">
+       v-for="(article, index) in articles" :key="index">
     <Article :article="article"/>
   </div>
 </template>
