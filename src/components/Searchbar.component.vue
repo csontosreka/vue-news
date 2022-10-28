@@ -5,7 +5,9 @@
           @submit.prevent="handleSubmit">
       <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
           type="text" placeholder="Search for news..." v-model="query">
-      <button class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-500 rounded-lg border border-blue-500"><i class="fa fa-search"></i></button>
+      <button class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-500 rounded-lg border border-blue-500">
+        <i class="fa fa-search"></i>
+      </button>
     </form>
   </div>
 </template>
