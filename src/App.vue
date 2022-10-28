@@ -33,6 +33,9 @@ export default {
       }).then(this.setResults)
     },
     setResults(results) {
+      [...results.articles].map((article) => {
+        article.publishedAt = article.publishedAt.slice(0, 10)
+      })
       this.news = results.articles
     },
     fetchCurrentNews() {
