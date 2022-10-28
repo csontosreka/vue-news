@@ -1,6 +1,6 @@
 <template>
   <div class="flex bg-slate-600">
-    <h1 class="pl-5 my-5 text-3xl text-white bold font-semibold">NewsSite</h1>
+    <button @click="navToHomePage" class="pl-5 my-5 text-3xl text-white bold font-semibold">NewsSite</button>
     <form class="flex mr-5 items-center max-w-md mx-auto shadow rounded border-0 p-3"
           @submit.prevent="handleSubmit">
       <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
@@ -21,6 +21,9 @@
     methods: {
       handleSubmit() {
         this.$emit('handle-submit', this.query)
+      },
+      navToHomePage() {
+        this.$emit('nav-to-home')
       }
     }
   }

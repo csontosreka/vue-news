@@ -1,5 +1,5 @@
 <template>
-  <SearchBar @handle-submit="handleSubmit"/>
+  <SearchBar @nav-to-home="fetchCurrentNews()" @handle-submit="handleSubmit"/>
   <Articles v-if="isCurrentNewsLoaded === false" :articles="fetchCurrentNews()"/>
   <Articles :articles="news"/>
 
